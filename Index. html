@@ -1,0 +1,90 @@
+from pathlib import Path
+
+src = Path("/mnt/data/bf_day_website")
+out = Path("/mnt/data/BF_Day_Website_Single.html")
+
+html = r"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Happy BF Day ❤️</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;min-height:100vh;background:linear-gradient(135deg,#fff0f5,#ffe4ec,#fff7fa);color:#5b2738;display:flex;justify-content:center;align-items:center;padding:20px;overflow:hidden}.card{width:min(850px,100%);max-height:95vh;overflow:auto;background:#ffffffdd;border:1px solid #ffd0dc;border-radius:28px;padding:30px 22px;text-align:center;box-shadow:0 15px 45px #9b3c5a25}.page{display:none;animation:fade .5s}.page.active{display:block}h1{font-size:clamp(2rem,8vw,4rem);color:#b83262;margin:12px 0}h2{color:#b83262;font-size:clamp(1.5rem,6vw,2.5rem)}p{font-size:1.05rem;line-height:1.7}.heart{font-size:3rem;animation:pulse 1.3s infinite}button{border:0;border-radius:999px;background:#d94f7b;color:white;padding:13px 22px;font-size:1rem;margin:8px;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.box{padding:18px;background:#fff4f8;border:1px solid #ffd7e2;border-radius:20px}.memory{height:150px;background:#ffe1ea;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}.letter{text-align:left;background:#fff7f9;border-radius:20px;padding:20px}.dots{margin:15px;color:#b83262;font-size:.9rem}@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes pulse{50%{transform:scale(1.15)}}.float{position:fixed;top:-30px;pointer-events:none;animation:fall 7s linear infinite}@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="card">
+
+<section class="page active" id="p1">
+<div class="heart">❤️</div><h1>Happy BF Day!</h1>
+<p>To my favourite person, my comfort place, and one of the sweetest parts of my life. 🥹🫂</p>
+<p>I've made a tiny world here just for you.</p>
+<button onclick="go(2)">Start the Surprise 💗</button>
+</section>
+
+<section class="page" id="p2">
+<h2>This or That? 👀💗</h2><p>Our little couple choices!</p>
+<div class="grid">
+<div class="box">🌙<br><b>Late-night calls</b><br>or ☀️ Morning chats</div>
+<div class="box">🫂<br><b>Hugs</b><br>or 💋 Kisses</div>
+<div class="box">🎬<br><b>Movie date</b><br>or 🌅 Sunset date</div>
+<div class="box">🍫<br><b>Chocolate</b><br>or 🍦 Ice cream</div>
+</div><button onclick="go(3)">Next →</button>
+</section>
+
+<section class="page" id="p3">
+<h2>Things I Love About You 🥹❤️</h2>
+<div class="grid">
+<div class="box">😊<br><b>Your smile</b><br>It can instantly make my day better.</div>
+<div class="box">🎶<br><b>Your voice</b><br>One of my favourite sounds.</div>
+<div class="box">👀<br><b>Your eyes</b><br>There is something special about them.</div>
+<div class="box">🫂<br><b>Your hugs</b><br>My favourite comfort place.</div>
+<div class="box">💗<br><b>Your understanding</b><br>You always try to understand me.</div>
+<div class="box">🌎<br><b>Your care</b><br>You make ordinary moments feel special.</div>
+</div><button onclick="go(4)">Our Memories →</button>
+</section>
+
+<section class="page" id="p4">
+<h2>Our Little Memory Book 📸</h2>
+<p>Replace these boxes with your favourite photos later. 💗</p>
+<div class="grid">
+<div class="memory">📸<br>Photo 1</div>
+<div class="memory">📸<br>Photo 2</div>
+<div class="memory">📸<br>Photo 3</div>
+<div class="memory">📸<br>Photo 4</div>
+</div><button onclick="go(5)">A Letter For You →</button>
+</section>
+
+<section class="page" id="p5">
+<h2>A Letter For You 💌</h2>
+<div class="letter">
+<p>My favourite person,</p>
+<p>I don't always know how to put everything I feel into words, but I want you to know how special you are to me.</p>
+<p>Thank you for the smiles, the calls, the little moments, the hugs, the patience, and all the memories we've made. ❤️</p>
+<p>Whatever little ups and downs come our way, I hope we always remember why we chose each other and keep choosing kindness, understanding and love.</p>
+<p>You have a very special place in my heart. 🫂</p>
+<p><b>Happy BF Day, my favourite person. ❤️</b></p>
+</div><button onclick="go(6)">One Last Surprise 🎁</button>
+</section>
+
+<section class="page" id="p6">
+<div class="heart">🎁</div><h1>One Last Thing...</h1>
+<p id="surprise">There is a little message waiting for you.</p>
+<button onclick="reveal()">Open My Surprise 💗</button>
+<button onclick="go(1)">Start Again ↻</button>
+</section>
+
+<div class="dots" id="dots">1 / 6</div>
+</div>
+
+<script>
+function go(n){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('p'+n).classList.add('active');document.getElementById('dots').textContent=n+' / 6';}
+function reveal(){document.getElementById('surprise').innerHTML='<b>You are one of the most precious people in my life. ❤️<br><br>Thank you for being you. 🫂<br><br>Happy BF Day! 💗</b>'}
+const s=['❤️','💗','💕','✨','🩷'];for(let i=0;i<18;i++){let x=document.createElement('span');x.className='float';x.textContent=s[Math.floor(Math.random()*s.length)];x.style.left=Math.random()*100+'vw';x.style.animationDelay=(-Math.random()*7)+'s';document.body.appendChild(x)}
+</script>
+</body>
+</html>"""
+
+out.write_text(html, encoding="utf-8")
+print(out)
